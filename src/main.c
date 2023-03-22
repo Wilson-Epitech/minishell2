@@ -7,20 +7,16 @@
 
 #include "../includes/lib.h"
 
-int check_command(char **args, char **env)
+static char **define_env(char **env)
 {
-    char *path = "PATH=";
-    char *path_value = get_env_line_path(env, path_value, path);
-    if (path_value == NULL) {
-        my_putstr(args[0]);
-        my_putstr(": Command not found.\n\n");
-        return 1;
-    } else if (*path_value == '\0') {
-        my_putstr(args[0]);
-        my_putstr(": Command not found.\n\n");
-        return 1;
+    char **test_env = NULL;
+    if (env[0] == NULL) {
+        test_env = malloc(sizeof(char *));
+        test_env[0] = NULL;
+    } else {
+        test_env = env;
     }
-    return 0;
+    return test_env;
 }
 
 int main(int ac, char **av, char **env)
@@ -28,7 +24,7 @@ int main(int ac, char **av, char **env)
     size_t size_buffer = 100;
     char *buffer = malloc(sizeof(char) * (size_buffer));
     int count = 0;
-
+    char **test_env = define_env(env);
     error_handling(ac);
     while (1) {
         bypass_first_lap(count);
@@ -40,7 +36,7 @@ int main(int ac, char **av, char **env)
             free(args);
             continue;
         }
-        shell_command(args, env, current_path_save);
+        shell_command(args, env, current_path_save, test_env);
         free(args); count ++;
     }
     free(buffer);

@@ -60,7 +60,8 @@ char *get_env_line_path(char **env, char *path_value, char *path);
 char *get_log_name(char **env);
 char **setenv_command(char **args, char **env);
 char **malloc_buffer(char **args, char *buffer, size_t size_buffer);
-char **shell_command(char **args, char **env, char *current_path_save);
+char **shell_command(char **args, char **env,
+    char *current_path_save, char **test_env);
 char **unsetenv_command(char **args, char **env);
 char *handling_path(char *buffer, size_t size_buffer, char **env);
 char **setenv_command_one_arg(char **args, char **env);
@@ -72,4 +73,8 @@ int path_loop(char *existing_path, char **env, char **args);
 int bypass_first_lap(int count);
 char **clone_env(char **env);
 int my_str_isalphanum(char const *str);
+int error_setenv_enorme(char **args, char *path_env_empty, char **env);
+char *check_env_is_empty(char **env, char **args);
+int check_command(char **args, char **env);
+void setenv_unsetenv_loop(char **args, char **new_env, char **env);
 #endif /* !LIB_H_ */

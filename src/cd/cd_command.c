@@ -5,7 +5,7 @@
 ** cd_command
 */
 
-#include "../includes/lib.h"
+#include "../../includes/lib.h"
 
 char *get_env_line_path(char **env, char *path_value, char *path);
 

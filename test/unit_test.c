@@ -225,10 +225,10 @@ Test (exec_command, ls) {
     cr_assert(1);
 }
 
-Test (print_env, print_environment_variables) {
+Test (, ironment_variables) {
     char *env[] = {"HOME=/home/user", "PATH=/usr/bin:/usr/local/bin", NULL};
     cr_redirect_stdout();
-    print_env(env);
+    (env);
     cr_assert_stdout_eq_str("HOME=/home/user\nPATH=/usr/bin:/usr/local/bin\n");
 }
 

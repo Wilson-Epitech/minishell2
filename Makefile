@@ -11,14 +11,19 @@ CFLAGS	=	-g3
 
 SRC	=	src/main.c			\
 		src/handling_path.c					\
+		src/check_command.c 				\
 		src/shell_command.c					\
 		src/malloc_buffer.c					\
-		src/setenv_command.c					\
+		src/setenv/setenv.c					\
+		src/setenv/setenv_one_arg.c					\
+		src/setenv/error_handling_setenv.c			\
+		src/unsetenv/unsetenv.c					\
 		src/exit_command.c					\
-		src/cd_command.c					\
+		src/cd/cd_command.c					\
 		src/error_handling.c				\
 		src/display_line_shell.c			\
 		src/get_path.c						\
+		src/setenv_unsetenv_loop.c          \
 		src/exec.c							\
 		src/check_existing_path.c			\
 		src/lib/my_putstr.c		\
