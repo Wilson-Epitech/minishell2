@@ -76,5 +76,5 @@ int my_str_isalphanum(char const *str);
 int error_setenv_enorme(char **args, char *path_env_empty, char **env);
 char *check_env_is_empty(char **env, char **args);
 int check_command(char **args, char **env);
-void setenv_unsetenv_loop(char **args, char **new_env, char **env);
+int setenv_unsetenv_loop(char **args, char **test_env, char **env);
 #endif /* !LIB_H_ */
