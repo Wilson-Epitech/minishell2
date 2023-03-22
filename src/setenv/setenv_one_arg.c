@@ -15,7 +15,8 @@ char **setenv_command_one_arg(char **args, char **env)
     int i = 0;
 
     while (env[i] != NULL) {
-        if (my_strcmp(env[i], arg1) != 0) {
+        if (my_strcmp(env[i], arg1) == 0) {
+            printf("ici env[i] : %s\n", env[i]);
             env[i] = str;
             return 0;
         }
