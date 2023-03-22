@@ -23,7 +23,6 @@ int setenv_unsetenv_loop(char **args, char **test_env, char **env)
     }
     if (args[2] == NULL && my_strcmp(args[0], "setenv") == 0) {
         if (my_strcmp(args[0], "setenv") == 0 && args[1] == NULL) {
-            printf("OKOK\n");
             return 1;
         }
         setenv_command_one_arg(args, test_env);

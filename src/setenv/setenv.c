@@ -16,11 +16,8 @@ char **setenv_command(char **args, char **env)
     str = my_strcat(arg1, "="); str = my_strcat(str, arg2);
     int i = 0;
 
-    if (my_strcmp(arg1, "env") == 0) {
-        print_env(env);
-    }
     while (env[i] != NULL) {
-        if (my_strcmp(env[i], arg1) == 0) {
+        if (my_strcmp(env[i], arg1) != 0) {
             env[i] = str;
             return 0;
         }
