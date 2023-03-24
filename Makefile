@@ -44,6 +44,7 @@ SRC	=	src/main.c			\
 		src/bypass_first_lap.c			\
 		src/clone_env.c					\
 		src/lib/my_str_isalphanum.c		\
+		src/lib/my_str_to_word_array_test.c				\
 
 SRC2	=	src/handling_path.c					\
 		src/shell_command.c					\

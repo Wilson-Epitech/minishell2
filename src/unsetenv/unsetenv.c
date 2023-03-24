@@ -7,26 +7,33 @@
 
 #include "../../includes/lib.h"
 
+static void swap_str(char **str1, char **str2)
+{
+    char *tmp = *str1;
+    *str1 = *str2;
+    *str2 = tmp;
+}
+
 char **unsetenv_command_loop(char **args, char **env)
 {
     char *arg1 = args[1];
-        char *path = my_strcat(arg1, "=");
-        char *path_value = NULL;
-        path_value = get_setenv_line_path(env, path_value, path);
+    char *path = my_strcat(arg1, "=");
+    char *path_value = NULL;
+    path_value = get_setenv_line_path(env, path_value, path);
 
-        int i = 0;
-        while (env[i] != NULL) {
-            if (my_strcmp(env[i], path_value) == 0) {
-                int j = i;
-                while (env[j] != NULL) {
-                    env[j] = NULL;
-                    j++;
-                }
-                env[j - 1] = NULL;
-                return env;
+    int i = 0;
+    while (env[i] != NULL) {
+        if (my_strcmp(env[i], path_value) == 0) {
+            int j = i;
+            while (env[j + 1] != NULL) {
+                swap_str(&env[j], &env[j + 1]);
+                j++;
             }
-            i++;
+            env[j] = NULL;
+            return env;
         }
+        i++;
+    }
     return env;
 }
 

@@ -7,10 +7,10 @@
 
 #include "../includes/lib.h"
 
-char **malloc_buffer(char **args, char *buffer, size_t size_buffer)
+char **malloc_buffer(char **tab, char *args, size_t size_buffer)
 {
-    args = malloc(sizeof(char*) * size_buffer);
-    error_handling_args(args);
-    args = my_str_to_word_array(buffer);
-    return args;
+    tab = malloc(sizeof(char*) * size_buffer);
+    error_handling_args(tab);
+    tab = my_str_to_word_array(args);
+    return tab;
 }

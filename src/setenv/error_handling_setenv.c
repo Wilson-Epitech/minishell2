@@ -40,7 +40,6 @@ int error_setenv_enorme(char **args, char *path_env_empty, char **env)
 {
     int error = 0;
     if (my_strncmp(args[0], "setenv", 5) == 0 && args[1] == NULL) {
-        printf("OKOK\n");
         return 1;
     }
     if (path_env_empty == NULL
