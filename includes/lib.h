@@ -22,6 +22,7 @@
     #include <sys/stat.h>
     #include <sys/types.h>
     #include <stdbool.h>
+    #include <fcntl.h>
 
 int my_getnbr(char const *str);
 char *get_full_path(char *path_value, char *full_path, char **args);

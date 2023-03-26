@@ -30,13 +30,13 @@ static void main_loop(char *buffer, size_t size_buffer,
     for (int x = 0; args[x] != NULL; x++) {
         char **tab = malloc_buffer(tab, args[x], size_buffer);
         int state = check_command(tab, env);
-            if (tab == NULL || args[0] == NULL || state == 1) {
-                free(args[x]);
-                continue;
-            }
-    shell_command(tab, env, current_path_save, test_env);
-    free(tab);
-    count ++;
+        if (tab == NULL || tab[0] == NULL || state == 1) {
+            free(tab[x]);
+            continue;
+        }
+        shell_command(tab, env, current_path_save, test_env);
+        free(tab);
+        count ++;
     }
 }
 

@@ -7,6 +7,8 @@
 
 #include "../../includes/lib.h"
 
+#include <stddef.h>
+
 static void swap_str(char **str1, char **str2)
 {
     char *tmp = *str1;
