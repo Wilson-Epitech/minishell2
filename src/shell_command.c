@@ -45,9 +45,9 @@ char **execute_redirection_loop(char **args)
 {
     for (int i = 0; args[i] != NULL; i++) {
         if (my_strncmp(args[i], ">", 1) == 0) {
-            char **new_array = my_str_to_word_array(args[i - 1]);
             simple_right_redirection(args, i);
-            return new_array;
+            args[i] = NULL;
+            return args;
         }
         if (my_strncmp(args[i], "<", 1) == 0) {
             simple_left_redirection(args);
