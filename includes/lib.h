@@ -60,9 +60,7 @@ void display_line_shell(char const *current_path, char **env);
 char *get_env_line_path(char **env, char *path_value, char *path);
 char *get_log_name(char **env);
 char **setenv_command(char **args, char **env);
-
 char **malloc_buffer(char **args, char *buffer, size_t size_buffer);
-
 char **shell_command(char **args, char **env,
     char *current_path_save, char **test_env);
 char **unsetenv_command(char **args, char **env);
@@ -81,4 +79,9 @@ char *check_env_is_empty(char **env, char **args);
 int check_command(char **args, char **env);
 int setenv_unsetenv_loop(char **args, char **test_env, char **env);
 char **my_str_to_word_array_delim(char const *str, char delim);
+char **execute_redirection_loop(char **args);
+int simple_right_redirection(char **args, int i);
+int simple_left_redirection(char **args, int i);
+int double_right_redirection(char **args, int i);
+int double_left_redirection(char **args, int i);
 #endif /* !LIB_H_ */

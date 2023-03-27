@@ -18,44 +18,6 @@ static int execute_pipe(char **args)
     return 0;
 }
 
-static int simple_right_redirection(char **args, int i)
-{
-    char *filename = args[i + 1];
-    int output_file = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-
-    if (output_file == -1) {
-        return -1;
-    }
-
-    dup2(output_file, STDOUT_FILENO);
-        if (dup2(output_file, STDOUT_FILENO) < 0) {
-            close(output_file);
-        return -1;
-    }
-    close(output_file);
-    return 0;
-}
-
-static int simple_left_redirection(char **args)
-{
-    return 0;
-}
-
-char **execute_redirection_loop(char **args)
-{
-    for (int i = 0; args[i] != NULL; i++) {
-        if (my_strncmp(args[i], ">", 1) == 0) {
-            simple_right_redirection(args, i);
-            args[i] = NULL;
-            return args;
-        }
-        if (my_strncmp(args[i], "<", 1) == 0) {
-            simple_left_redirection(args);
-        }
-    }
-    return args;
-}
-
 char **shell_command(char **args, char **env,
     char *current_path_save, char **test_env)
 {
