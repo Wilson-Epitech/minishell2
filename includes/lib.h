@@ -84,4 +84,6 @@ int simple_right_redirection(char **args, int i);
 int simple_left_redirection(char **args, int i);
 int double_right_redirection(char **args, int i);
 int double_left_redirection(char **args, int i);
+bool is_word_separator(char c);
+bool is_word_separator_delim(char c, char delim);
 #endif /* !LIB_H_ */

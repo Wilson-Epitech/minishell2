@@ -30,6 +30,8 @@ SRC	=	src/main.c												\
 		src/lib/my_putchar.c									\
 		src/lib/my_strlen.c										\
 		src/lib/my_str_to_word_array.c							\
+		src/lib/is_word_separator.c 							\
+		src/lib/is_word_separator_delim.c						\
 		src/lib/my_strcat.c										\
 		src/lib/my_strcpy.c										\
 		src/lib/my_strncpy.c									\
