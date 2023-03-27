@@ -21,18 +21,15 @@ static int execute_pipe(char **args)
 static int simple_right_redirection(char **args, int i)
 {
     char *filename = args[i + 1];
-    int output_file = 0;
+    int output_file = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 
-    if (filename != NULL && access(filename, F_OK) != -1) {
-        output_file = open(filename, O_WRONLY | O_TRUNC);
-    } else {
-        output_file = open(filename, O_WRONLY | O_CREAT, 0644);
-    }
-    if (output_file < 0) {
+    if (output_file == -1) {
         return -1;
     }
-    if (dup2(output_file, STDOUT_FILENO) < 0) {
-        close(output_file);
+
+    dup2(output_file, STDOUT_FILENO);
+        if (dup2(output_file, STDOUT_FILENO) < 0) {
+            close(output_file);
         return -1;
     }
     close(output_file);
@@ -44,17 +41,19 @@ static int simple_left_redirection(char **args)
     return 0;
 }
 
-int execute_redirection_loop(char **args)
+char **execute_redirection_loop(char **args)
 {
     for (int i = 0; args[i] != NULL; i++) {
         if (my_strncmp(args[i], ">", 1) == 0) {
+            char **new_array = my_str_to_word_array(args[i - 1]);
             simple_right_redirection(args, i);
+            return new_array;
         }
         if (my_strncmp(args[i], "<", 1) == 0) {
             simple_left_redirection(args);
         }
     }
-    return 0;
+    return args;
 }
 
 char **shell_command(char **args, char **env,
@@ -63,11 +62,14 @@ char **shell_command(char **args, char **env,
     char *path_env_empty = check_env_is_empty(env, args);
     char *existing_path = NULL;
     char **new_env = clone_env(env);
+    int fd_backup = dup(1);
     exit_command(args);
     setenv_unsetenv_loop(args, test_env, env);
     cd_command(args, env, current_path_save);
+    args = execute_redirection_loop(args);
     execute_pipe(args);
     existing_path = check_existing_path(args);
     path_loop(existing_path, env, args);
+    dup2(fd_backup, STDOUT_FILENO);
     return env;
 }
