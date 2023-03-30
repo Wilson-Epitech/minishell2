@@ -7,13 +7,33 @@
 
 #include "../../includes/lib.h"
 
-#include <stddef.h>
-
 static void swap_str(char **str1, char **str2)
 {
     char *tmp = *str1;
     *str1 = *str2;
     *str2 = tmp;
+}
+
+static int find_index_in_env(char **env, char *path_value)
+{
+    int i = 0;
+    while (env[i] != NULL) {
+        if (my_strcmp(env[i], path_value) == 0) {
+            return i;
+        }
+        i++;
+    }
+    return -1;
+}
+
+static void remove_in_env(char **env, int index)
+{
+    int j = index;
+    while (env[j + 1] != NULL) {
+        swap_str(&env[j], &env[j + 1]);
+        j++;
+    }
+    env[j] = NULL;
 }
 
 char **unsetenv_command_loop(char **args, char **env)
@@ -23,19 +43,11 @@ char **unsetenv_command_loop(char **args, char **env)
     char *path_value = NULL;
     path_value = get_setenv_line_path(env, path_value, path);
 
-    int i = 0;
-    while (env[i] != NULL) {
-        if (my_strcmp(env[i], path_value) == 0) {
-            int j = i;
-            while (env[j + 1] != NULL) {
-                swap_str(&env[j], &env[j + 1]);
-                j++;
-            }
-            env[j] = NULL;
-            return env;
-        }
-        i++;
+    int index_to_remove = find_index_in_env(env, path_value);
+    if (index_to_remove != -1) {
+        remove_in_env(env, index_to_remove);
     }
+
     return env;
 }
 

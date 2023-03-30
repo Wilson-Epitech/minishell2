@@ -47,11 +47,12 @@ SRC	=	src/main.c												\
 		src/clone_env.c											\
 		src/lib/my_str_isalphanum.c								\
 		src/lib/my_str_to_word_array_test.c						\
-		src/redirections/redirection_loop.c					\
-		src/redirections/simple_right_redirection.c			\
-		src/redirections/simple_left_redirection.c			\
-		src/redirections/double_right_redirection.c			\
-		src/redirections/double_left_redirection.c			\
+		src/lib/is_alphanum_letter.c							\
+		src/redirections/redirection_loop.c						\
+		src/redirections/simple_right_redirection.c				\
+		src/redirections/simple_left_redirection.c				\
+		src/redirections/double_right_redirection.c				\
+		src/redirections/double_left_redirection.c				\
 
 SRC2	=	src/handling_path.c									\
 		src/shell_command.c										\

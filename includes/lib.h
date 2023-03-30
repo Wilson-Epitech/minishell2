@@ -10,6 +10,7 @@
     #include <stdio.h>
     #include <unistd.h>
     #include <string.h>
+    #include <stddef.h>
     #include <stdlib.h>
     #include <sys/types.h>
     #include <sys/wait.h>
@@ -68,7 +69,7 @@ char *handling_path(char *buffer, size_t size_buffer, char **env);
 char **setenv_command_one_arg(char **args, char **env);
 int check_before_unsetenv(char **args, char **env);
 char *get_setenv_line_path(char **env, char *path_value, char *path);
-void print_env(char **env);
+void print_env(char **args, char **env);
 int check_before_unsetenv(char **args, char **env);
 int path_loop(char *existing_path, char **env, char **args);
 int bypass_first_lap(int count);
@@ -86,4 +87,5 @@ int double_right_redirection(char **args, int i);
 int double_left_redirection(char **args, int i);
 bool is_word_separator(char c);
 bool is_word_separator_delim(char c, char delim);
+bool is_alphanum_letter(char c);
 #endif /* !LIB_H_ */
